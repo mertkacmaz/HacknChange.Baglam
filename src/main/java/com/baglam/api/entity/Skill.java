@@ -27,8 +27,7 @@ public class Skill {
 	private int id;
 	private String name;
 	private int level;
-	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "employee_skill", joinColumns = @JoinColumn(name = "skill_id"), inverseJoinColumns = @JoinColumn(name = "employee_id"))
 	private List<Employee> employees;
 
@@ -36,4 +35,9 @@ public class Skill {
 			CascadeType.REFRESH })
 	@JoinTable(name = "project_skill", joinColumns = @JoinColumn(name = "skill_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<Project> projects;
+
+	public Skill(String name, int level) {
+		this.name = name;
+		this.level = level;
+	}
 }

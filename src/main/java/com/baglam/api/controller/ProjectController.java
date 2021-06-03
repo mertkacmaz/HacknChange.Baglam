@@ -10,21 +10,21 @@ import org.springframework.web.bind.annotation.RestController;
 import com.baglam.api.entity.Project;
 import com.baglam.api.repository.ProjectRepository;
 
-@RestController
-@RequestMapping("/api/project")
-public class ProjectController {
-
-	@Autowired
-	private ProjectRepository projectRepository;
-
-	@GetMapping()
-	public Project getAll() {
-		return new Project();
-	}
-
-	@PostMapping
-	public Project createProject(@RequestBody Project project) {
-		Project p = projectRepository.save(project);
-		return p;
-	}
-}
+//@RestController
+//@RequestMapping("/api/project")
+//public class ProjectController {
+//
+//	@Autowired
+//	private ProjectRepository projectRepository;
+//
+//	@GetMapping()
+//	public Project getAll() {
+//		return new Project();
+//	}
+//
+//	@PostMapping
+//	public Project createProject(@RequestBody Project project) {
+//		Project p = projectRepository.save(project);
+//		return p;
+//	}
+//}

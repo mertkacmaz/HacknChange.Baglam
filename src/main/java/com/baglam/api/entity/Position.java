@@ -16,9 +16,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name="position")
+@Table(name = "position")
 @NoArgsConstructor
-@Data public class Position {
+@Data
+public class Position {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,8 +29,7 @@ import lombok.NoArgsConstructor;
 	@Column(name = "name")
 	private String name;
 
-	@OneToMany(mappedBy = "position", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST,
-			CascadeType.REFRESH })
+	@OneToMany(mappedBy = "position", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
 	private List<Employee> employees;
 
 	public void addEmployee(Employee employee) {
@@ -37,6 +37,10 @@ import lombok.NoArgsConstructor;
 			employees = new ArrayList<Employee>();
 		}
 		employees.add(employee);
-		employee.setPosition(this);
 	}
+
+	public Position(String name) {
+		this.name = name;
+	}
+
 }

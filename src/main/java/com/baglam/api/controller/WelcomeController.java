@@ -56,4 +56,40 @@ public class WelcomeController {
 		objectsModel.setPositions(positions);
 		return objectsModel;
 	}
+
+	@GetMapping
+	@RequestMapping("/employee")
+	public List<Employee> getAllEmployees() {
+		List<Employee> employees = 
+				  StreamSupport.stream(employeeRepo.findAll().spliterator(), false)
+				    .collect(Collectors.toList());
+		return employees;
+	}
+
+	@GetMapping
+	@RequestMapping("/project")
+	public List<Project> getAllProjects() {
+		List<Project> projects = 
+				  StreamSupport.stream(projectRepo.findAll().spliterator(), false)
+				    .collect(Collectors.toList());
+		return projects;
+	}
+
+	@GetMapping
+	@RequestMapping("/skill")
+	public List<Skill> getAllSkills() {
+		List<Skill> skills = 
+				  StreamSupport.stream(skillRepo.findAll().spliterator(), false)
+				    .collect(Collectors.toList());
+		return skills;
+	}
+
+	@GetMapping
+	@RequestMapping("/position")
+	public List<Position> getAllPositions() {
+		List<Position> positions = 
+				  StreamSupport.stream(positionRepo.findAll().spliterator(), false)
+				    .collect(Collectors.toList());
+		return positions;
+	}
 }

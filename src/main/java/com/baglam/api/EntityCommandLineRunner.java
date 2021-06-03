@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -74,7 +75,7 @@ public class EntityCommandLineRunner implements CommandLineRunner {
 		List<Project> projects = new ArrayList<Project>();
 		for (String name : projectNames) {
 			Random random = new Random();
-			Project project = new Project(name, random.nextLong(), false);
+			Project project = new Project(name, ThreadLocalRandom.current().nextLong(System.currentTimeMillis(), System.currentTimeMillis() + 10000000l), false);
 			int skillCount = random.nextInt(10);
 			for (int i = 0; i < Math.max(skillCount, 6); i++) {
 				project.add(skills.get(random.nextInt(skills.size())));

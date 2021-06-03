@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -29,6 +31,7 @@ public class Position {
 	@Column(name = "name")
 	private String name;
 
+	@JsonIgnore
 	@OneToMany(mappedBy = "position", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
 	private List<Employee> employees;
 

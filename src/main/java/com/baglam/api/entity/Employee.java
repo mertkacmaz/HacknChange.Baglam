@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -38,12 +40,14 @@ public class Employee {
 	private Position position;
 
 	@Column(name = "point")
-	private double point;
+	private int point;
 
+//	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH })
 	@JoinTable(name = "employee_skill", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "skill_id"))
 	private List<Skill> skills;
 
+	@JsonIgnore
 	@ManyToMany(fetch = FetchType.LAZY, cascade = { CascadeType.DETACH, CascadeType.MERGE,CascadeType.REFRESH })
 	@JoinTable(name = "project_employee", joinColumns = @JoinColumn(name = "employee_id"), inverseJoinColumns = @JoinColumn(name = "project_id"))
 	private List<Project> projects;
@@ -76,7 +80,7 @@ public class Employee {
 		projects.add(project);
 	}
 
-	public Employee(String name, double point) {
+	public Employee(String name, int point) {
 		this.name = name;
 		this.point = point;
 	}
